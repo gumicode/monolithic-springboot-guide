@@ -1,5 +1,14 @@
 server:
-  port: 8080
+  port: 9090
+
+logging:
+  level:
+    com.example.monolithic: debug
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%12.12thread] %-40.40logger{40} %replace(%msg){'[\r\n]', ''}%n"  # spring boot logging patten , CRLF injection for logs 해결
+  file:
+    name: /Users/kbs/Desktop/test.log # 로그 파일 저장 경로
+
 
 spring:
   datasource:
