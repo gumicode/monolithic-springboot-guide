@@ -39,4 +39,12 @@ public class Member extends BaseEntity implements EntitySupport {
             throw new DomainValidationException();
         }
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
