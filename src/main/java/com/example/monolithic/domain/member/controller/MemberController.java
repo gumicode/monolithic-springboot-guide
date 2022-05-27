@@ -5,6 +5,7 @@ import com.example.monolithic.domain.member.dto.MemberGetResponse;
 import com.example.monolithic.domain.member.dto.MemberPostRequest;
 import com.example.monolithic.domain.member.dto.MemberPostResponse;
 import com.example.monolithic.domain.member.entity.Member;
+import com.example.monolithic.domain.member.property.MemberPath;
 import com.example.monolithic.domain.member.service.MemberService;
 import com.example.monolithic.global.dto.SuccessResponse;
 import com.example.monolithic.global.dto.SuccessResponseHelper;
@@ -22,19 +23,19 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/members")
+    @GetMapping(MemberPath.MEMBERS)
     public SuccessResponse<Page<MemberGetResponse>> getMembers(final Pageable pageable, final MemberGetRequest memberGetRequest) {
         Page<Member> pageMember = memberService.pageMember(pageable, memberGetRequest);
         return SuccessResponseHelper.success(pageMember.map(MemberGetResponse::new));
     }
 
-    @GetMapping("/members/{memberId}")
+    @GetMapping(MemberPath.MEMBERS + "/{memberId}")
     public SuccessResponse<MemberGetResponse> getMember(@PathVariable final Long memberId) {
         Member member = memberService.getMember(memberId);
         return SuccessResponseHelper.success(new MemberGetResponse(member));
     }
 
-    @PostMapping("/members")
+    @PostMapping(MemberPath.MEMBERS)
     public SuccessResponse<MemberPostResponse> postMember(@Validated @RequestBody final MemberPostRequest request) {
         Member member = memberService.registerMember(request);
         return SuccessResponseHelper.success(new MemberPostResponse(member));
