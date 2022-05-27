@@ -1,0 +1,7 @@
+POST localhost:8080/members
+Content-Type: application/json
+
+{
+  "username" : "username1",
+  "password" : "abcd1234!"
+}

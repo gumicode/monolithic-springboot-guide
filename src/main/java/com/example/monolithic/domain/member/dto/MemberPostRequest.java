@@ -12,10 +12,10 @@ import javax.validation.constraints.Pattern;
 public class MemberPostRequest {
 
     @NotBlank
-    @Pattern(regexp = Regex.USERNAME)
+    @Pattern(regexp = Regex.USERNAME, message = "{REGEX_USERNAME}")
     private String username;
 
     @NotBlank
-    @Pattern(regexp = Regex.PASSWORD)
+    @Pattern(regexp = Regex.PASSWORD, message = "{REGEX_PASSWORD}")
     private String password;
 }

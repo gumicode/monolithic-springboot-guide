@@ -13,6 +13,7 @@ public enum GlobalErrorCode implements ErrorCode {
     ,G0002(HttpStatus.INTERNAL_SERVER_ERROR)
     ,G0003(HttpStatus.BAD_REQUEST)
     ,G0004(HttpStatus.NOT_FOUND)
+    ,G0005(HttpStatus.BAD_REQUEST)
     ;
 
     private final HttpStatus status;

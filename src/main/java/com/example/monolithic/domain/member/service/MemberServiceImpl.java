@@ -3,7 +3,6 @@ package com.example.monolithic.domain.member.service;
 import com.example.monolithic.domain.member.dto.MemberGetRequest;
 import com.example.monolithic.domain.member.dto.MemberPostRequest;
 import com.example.monolithic.domain.member.entity.Member;
-import com.example.monolithic.domain.member.repository.MemberQueryRepository;
 import com.example.monolithic.domain.member.repository.MemberRepository;
 import com.example.monolithic.global.exception.DomainNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-    private final MemberQueryRepository memberQueryRepository;
 
     @Transactional
     public Member registerMember(@NonNull final MemberPostRequest memberPostRequest) {
@@ -41,6 +39,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional(readOnly = true)
     public Page<Member> pageMember(@NonNull final Pageable pageable, final MemberGetRequest memberGetRequest) {
-        return this.memberQueryRepository.page(pageable, memberGetRequest);
+        return this.memberRepository.page(pageable, memberGetRequest);
     }
 }

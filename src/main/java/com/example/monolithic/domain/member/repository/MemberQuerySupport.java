@@ -1,4 +1,4 @@
-package com.example.monolithic.domain.member.repository.support;
+package com.example.monolithic.domain.member.repository;
 
 import com.example.monolithic.domain.member.dto.MemberGetRequest;
 import com.example.monolithic.global.repository.QuerySupport;

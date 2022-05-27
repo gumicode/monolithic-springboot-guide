@@ -2,7 +2,6 @@ package com.example.monolithic.domain.member.repository;
 
 import com.example.monolithic.domain.member.dto.MemberGetRequest;
 import com.example.monolithic.domain.member.entity.Member;
-import com.example.monolithic.domain.member.repository.support.MemberQuerySupport;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

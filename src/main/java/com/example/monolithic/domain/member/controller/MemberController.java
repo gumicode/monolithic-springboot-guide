@@ -23,7 +23,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/members")
-    public SuccessResponse<Page<MemberGetResponse>> getMember(final Pageable pageable, final MemberGetRequest memberGetRequest) {
+    public SuccessResponse<Page<MemberGetResponse>> getMembers(final Pageable pageable, final MemberGetRequest memberGetRequest) {
         Page<Member> pageMember = memberService.pageMember(pageable, memberGetRequest);
         return SuccessResponseHelper.success(pageMember.map(MemberGetResponse::new));
     }
