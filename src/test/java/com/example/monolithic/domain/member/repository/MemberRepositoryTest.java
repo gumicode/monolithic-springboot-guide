@@ -25,12 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Import(TestJPAQueryFactoryConfiguration.class)
 class MemberRepositoryTest {
 
-    @Autowired
-    MemberRepository memberRepository;
-
     @Test
     @DisplayName("회원을 생성 합니다. [조건] 저장 수 : 1개 ")
-    void saveMember() {
+    void save(@Autowired MemberRepository memberRepository) {
 
         // given
         String username = "username1";
@@ -48,7 +45,7 @@ class MemberRepositoryTest {
 
     @Test
     @DisplayName("회원을 생성 합니다. [조건] 저장 수 : 10개 ")
-    void saveMembers() {
+    void saveAll(@Autowired MemberRepository memberRepository) {
 
         // given
         List<Member> members = Stream.iterate(0, n -> n + 1)
@@ -67,7 +64,7 @@ class MemberRepositoryTest {
 
     @Test
     @DisplayName("회원을 삭제 합니다. [조건] 삭제 수 : 1개 ")
-    void deleteMember() {
+    void delete(@Autowired MemberRepository memberRepository) {
 
         // given
         String username = "username1";
@@ -87,7 +84,7 @@ class MemberRepositoryTest {
 
     @Test
     @DisplayName("회원을 수정 합니다. [조건] username 을 수정 합니다. ")
-    void updateMember() {
+    void update(@Autowired MemberRepository memberRepository) {
 
         // given
         String username = "username1";
@@ -112,7 +109,7 @@ class MemberRepositoryTest {
 
     @Test
     @DisplayName("회원 목록을 조회 합니다. [조건] 10개 회원 목록을 조회 ")
-    void query() {
+    void query(@Autowired MemberRepository memberRepository) {
 
         //given
         List<Member> members = Stream.iterate(0, n -> n + 1)

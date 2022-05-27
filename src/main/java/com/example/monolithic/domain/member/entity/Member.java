@@ -3,6 +3,7 @@ package com.example.monolithic.domain.member.entity;
 import com.example.monolithic.global.entity.BaseEntity;
 import com.example.monolithic.global.entity.EntitySupport;
 import com.example.monolithic.global.exception.DomainValidationException;
+import com.example.monolithic.global.property.Regex;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,12 +30,12 @@ public class Member extends BaseEntity implements EntitySupport {
 
     @Override
     public void validation() {
-        if (username == null || username.isBlank()) {
-            log.error("nickname : {}", username);
+        if (username == null || !username.matches(Regex.USERNAME)) {
+            log.error("username : {}", username);
             throw new DomainValidationException();
         }
 
-        if (password == null || password.isBlank()) {
+        if (password == null || !password.matches(Regex.PASSWORD)) {
             log.error("password : {}", password);
             throw new DomainValidationException();
         }
