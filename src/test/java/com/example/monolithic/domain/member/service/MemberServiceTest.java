@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -19,77 +20,80 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 class MemberServiceTest {
 
-    @Mock
-    MemberRepository memberRepository;
+	@Mock
+	MemberRepository memberRepository;
 
-    MemberService memberService;
+	@Mock
+	ApplicationEventPublisher applicationEventPublisher;
 
-    @BeforeEach
-    void setMemberService(){
-        memberService = new MemberServiceImpl(memberRepository);
-    }
+	MemberService memberService;
 
-    @Test
-    @DisplayName("회원을 생성 합니다.")
-    void registerMember() {
+	@BeforeEach
+	void setMemberService() {
+		memberService = new MemberServiceImpl(memberRepository, applicationEventPublisher);
+	}
 
-        // given
-        String username = "username1";
-        String password = "abcd1234!";
-        MemberPostRequest memberPostRequest = MemberPostRequest.builder()
-                .username(username)
-                .password(password)
-                .build();
-        given(memberRepository.save(any())).willReturn(Member.builder()
-                .id(1L)
-                .username(username)
-                .password(password)
-                .build());
+	@Test
+	@DisplayName("회원을 생성 합니다.")
+	void registerMember() {
 
-        // when
-        Member registerMember = memberService.registerMember(memberPostRequest);
+		// given
+		String username = "username1";
+		String password = "abcd1234!";
+		MemberPostRequest memberPostRequest = MemberPostRequest.builder()
+				.username(username)
+				.password(password)
+				.build();
+		given(memberRepository.save(any())).willReturn(Member.builder()
+				.id(1L)
+				.username(username)
+				.password(password)
+				.build());
 
-        // then
-        assertEquals(registerMember.getUsername(), username);
-    }
+		// when
+		Member registerMember = memberService.registerMember(memberPostRequest);
 
-    @Test
-    @DisplayName("회원을 생성 합니다. [조건] 올바르지 않은 username 정규식을 추가 합니다. [param] username : user")
-    void registerMemberFailedUsernameRegex() {
+		// then
+		assertEquals(registerMember.getUsername(), username);
+	}
 
-        // given
-        String username = "user";
-        String password = "abcd1234!";
-        MemberPostRequest memberPostRequest = MemberPostRequest.builder()
-                .username(username)
-                .password(password)
-                .build();
+	@Test
+	@DisplayName("회원을 생성 합니다. [조건] 올바르지 않은 username 정규식을 추가 합니다. [param] username : user")
+	void registerMemberFailedUsernameRegex() {
 
-        // when
-        assertThrows(DomainValidationException.class, () -> {
-            memberService.registerMember(memberPostRequest);
-        });
+		// given
+		String username = "user";
+		String password = "abcd1234!";
+		MemberPostRequest memberPostRequest = MemberPostRequest.builder()
+				.username(username)
+				.password(password)
+				.build();
 
-        // then
-    }
+		// when
+		assertThrows(DomainValidationException.class, () -> {
+			memberService.registerMember(memberPostRequest);
+		});
 
-    @Test
-    @DisplayName("회원을 생성 합니다. [조건] 올바르지 않은 password 정규식을 추가 합니다. [param] password : 1")
-    void registerMemberFailedPasswordRegex() {
+		// then
+	}
 
-        // given
-        String username = "username1";
-        String password = "1!";
-        MemberPostRequest memberPostRequest = MemberPostRequest.builder()
-                .username(username)
-                .password(password)
-                .build();
+	@Test
+	@DisplayName("회원을 생성 합니다. [조건] 올바르지 않은 password 정규식을 추가 합니다. [param] password : 1")
+	void registerMemberFailedPasswordRegex() {
 
-        // when
-        assertThrows(DomainValidationException.class, () -> {
-            memberService.registerMember(memberPostRequest);
-        });
+		// given
+		String username = "username1";
+		String password = "1!";
+		MemberPostRequest memberPostRequest = MemberPostRequest.builder()
+				.username(username)
+				.password(password)
+				.build();
 
-        // then
-    }
+		// when
+		assertThrows(DomainValidationException.class, () -> {
+			memberService.registerMember(memberPostRequest);
+		});
+
+		// then
+	}
 }
