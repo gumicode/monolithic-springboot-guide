@@ -51,7 +51,7 @@ class MemberServiceTest {
 				.build());
 
 		// when
-		Member registerMember = memberService.registerMember(memberPostRequest);
+		Member registerMember = memberService.save(memberPostRequest);
 
 		// then
 		assertEquals(registerMember.getUsername(), username);
@@ -71,7 +71,7 @@ class MemberServiceTest {
 
 		// when
 		assertThrows(DomainValidationException.class, () -> {
-			memberService.registerMember(memberPostRequest);
+			memberService.save(memberPostRequest);
 		});
 
 		// then
@@ -91,7 +91,7 @@ class MemberServiceTest {
 
 		// when
 		assertThrows(DomainValidationException.class, () -> {
-			memberService.registerMember(memberPostRequest);
+			memberService.save(memberPostRequest);
 		});
 
 		// then

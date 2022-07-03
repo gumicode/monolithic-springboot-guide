@@ -9,9 +9,9 @@ import org.springframework.lang.NonNull;
 
 public interface MemberService {
 
-    Member registerMember(@NonNull final MemberPostRequest memberPostRequest);
+    Member save(@NonNull final MemberPostRequest memberPostRequest);
 
-    Member getMember(@NonNull final Long memberId);
+    Member find(@NonNull final Long memberId);
 
-    Page<Member> pageMember(@NonNull final Pageable pageable, final MemberGetRequest memberGetRequest);
+    Page<Member> page(@NonNull final Pageable pageable, final MemberGetRequest memberGetRequest);
 }

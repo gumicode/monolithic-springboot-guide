@@ -21,6 +21,6 @@ public class AlertEventHandler {
 	@Async
 	@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
 	public void publishEventListener(@Validated final AlertPublishEvent event) {
-		alertService.register(AlertConverter.to(event));
+		alertService.save(AlertConverter.to(event));
 	}
 }

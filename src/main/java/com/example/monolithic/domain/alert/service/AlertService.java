@@ -6,5 +6,5 @@ import org.springframework.lang.NonNull;
 
 public interface AlertService {
 
-	Alert register(@NonNull final AlertPostRequest alertPostRequest);
+	Alert save(@NonNull final AlertPostRequest alertPostRequest);
 }

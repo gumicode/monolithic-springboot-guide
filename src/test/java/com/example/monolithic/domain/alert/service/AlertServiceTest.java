@@ -50,7 +50,7 @@ class AlertServiceTest {
 		given(alertRepository.save(any())).willReturn(this.generateMockEntity(alertPostRequest));
 
 		// when
-		Alert saved = alertService.register(alertPostRequest);
+		Alert saved = alertService.save(alertPostRequest);
 
 		// then
 		assertEquals(saved.getMemberId(), alertPostRequest.getMemberId());

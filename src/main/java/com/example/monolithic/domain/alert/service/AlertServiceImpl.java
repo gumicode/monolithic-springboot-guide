@@ -16,7 +16,7 @@ public class AlertServiceImpl implements AlertService {
 	private final AlertRepository alertRepository;
 
 	@Transactional
-	public Alert register(final AlertPostRequest alertPostRequest) {
+	public Alert save(final AlertPostRequest alertPostRequest) {
 
 		Alert alert = Alert.builder()
 				.memberId(alertPostRequest.getMemberId())

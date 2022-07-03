@@ -24,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
 	private final ApplicationEventPublisher applicationEventPublisher;
 
 	@Transactional
-	public Member registerMember(@NonNull final MemberPostRequest memberPostRequest) {
+	public Member save(@NonNull final MemberPostRequest memberPostRequest) {
 
 		Member member = Member.builder()
 				.username(memberPostRequest.getUsername())
@@ -39,13 +39,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Transactional(readOnly = true)
-	public Member getMember(Long memberId) {
+	public Member find(Long memberId) {
 		return this.memberRepository.findById(memberId)
 				.orElseThrow(() -> new DomainNotFoundException(memberId));
 	}
 
 	@Transactional(readOnly = true)
-	public Page<Member> pageMember(@NonNull final Pageable pageable, final MemberGetRequest memberGetRequest) {
+	public Page<Member> page(@NonNull final Pageable pageable, final MemberGetRequest memberGetRequest) {
 		return this.memberRepository.page(pageable, memberGetRequest);
 	}
 }

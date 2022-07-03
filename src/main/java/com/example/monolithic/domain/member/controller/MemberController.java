@@ -25,19 +25,19 @@ public class MemberController {
 
     @GetMapping(MemberPath.MEMBERS)
     public SuccessResponse<Page<MemberGetResponse>> getMembers(final Pageable pageable, final MemberGetRequest memberGetRequest) {
-        Page<Member> pageMember = memberService.pageMember(pageable, memberGetRequest);
+        Page<Member> pageMember = memberService.page(pageable, memberGetRequest);
         return SuccessResponseHelper.success(pageMember.map(MemberGetResponse::new));
     }
 
     @GetMapping(MemberPath.MEMBERS + "/{memberId}")
     public SuccessResponse<MemberGetResponse> getMember(@PathVariable final Long memberId) {
-        Member member = memberService.getMember(memberId);
+        Member member = memberService.find(memberId);
         return SuccessResponseHelper.success(new MemberGetResponse(member));
     }
 
     @PostMapping(MemberPath.MEMBERS)
     public SuccessResponse<MemberPostResponse> postMember(@Validated @RequestBody final MemberPostRequest request) {
-        Member member = memberService.registerMember(request);
+        Member member = memberService.save(request);
         return SuccessResponseHelper.success(new MemberPostResponse(member));
     }
 }

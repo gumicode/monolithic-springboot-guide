@@ -54,7 +54,7 @@ class MemberControllerTest {
                 .build();
         List<Member> members = List.of(returnMember);
         Page<Member> memberPage = PageableExecutionUtils.getPage(members, PageRequest.of(0, 10), () -> 10L);
-        given(memberService.pageMember(any(), any())).willReturn(memberPage);
+        given(memberService.page(any(), any())).willReturn(memberPage);
 
         // when
         ResultActions resultActions = mockMvc.perform(get(MemberPath.MEMBERS)
