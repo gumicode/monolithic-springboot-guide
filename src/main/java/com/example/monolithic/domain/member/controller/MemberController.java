@@ -5,10 +5,10 @@ import com.example.monolithic.domain.member.dto.MemberGetResponse;
 import com.example.monolithic.domain.member.dto.MemberPostRequest;
 import com.example.monolithic.domain.member.dto.MemberPostResponse;
 import com.example.monolithic.domain.member.entity.Member;
-import com.example.monolithic.domain.member.property.MemberPath;
 import com.example.monolithic.domain.member.service.MemberService;
 import com.example.monolithic.global.dto.SuccessResponse;
 import com.example.monolithic.global.dto.SuccessResponseHelper;
+import com.example.monolithic.global.property.Url;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -23,19 +23,19 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping(MemberPath.MEMBERS)
+    @GetMapping(Url.MEMBER)
     public SuccessResponse<Page<MemberGetResponse>> getMembers(final Pageable pageable, final MemberGetRequest memberGetRequest) {
         Page<Member> pageMember = memberService.page(pageable, memberGetRequest);
         return SuccessResponseHelper.success(pageMember.map(MemberGetResponse::new));
     }
 
-    @GetMapping(MemberPath.MEMBERS + "/{memberId}")
+    @GetMapping(Url.MEMBER + "/{memberId}")
     public SuccessResponse<MemberGetResponse> getMember(@PathVariable final Long memberId) {
         Member member = memberService.find(memberId);
         return SuccessResponseHelper.success(new MemberGetResponse(member));
     }
 
-    @PostMapping(MemberPath.MEMBERS)
+    @PostMapping(Url.MEMBER)
     public SuccessResponse<MemberPostResponse> postMember(@Validated @RequestBody final MemberPostRequest request) {
         Member member = memberService.save(request);
         return SuccessResponseHelper.success(new MemberPostResponse(member));
