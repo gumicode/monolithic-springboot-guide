@@ -10,9 +10,9 @@ public enum GlobalErrorCode implements ErrorCode {
 
     G0000(HttpStatus.INTERNAL_SERVER_ERROR)
     ,G0001(HttpStatus.BAD_REQUEST)
-    ,G0002(HttpStatus.INTERNAL_SERVER_ERROR)
+    ,G0002(HttpStatus.NOT_FOUND)
     ,G0003(HttpStatus.BAD_REQUEST)
-    ,G0004(HttpStatus.NOT_FOUND)
+    ,G0004(HttpStatus.BAD_REQUEST)
     ,G0005(HttpStatus.BAD_REQUEST)
     ;
 
