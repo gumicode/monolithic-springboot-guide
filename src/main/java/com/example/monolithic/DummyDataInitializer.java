@@ -1,6 +1,7 @@
 package com.example.monolithic;
 
 import com.example.monolithic.domain.member.entity.Member;
+import com.example.monolithic.domain.member.repository.MemberQueryRepository;
 import com.example.monolithic.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;

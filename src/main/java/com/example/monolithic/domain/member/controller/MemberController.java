@@ -21,23 +21,23 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
+	private final MemberService memberService;
 
-    @GetMapping(Url.MEMBER)
-    public SuccessResponse<Page<MemberGetResponse>> getMembers(final Pageable pageable, final MemberGetRequest memberGetRequest) {
-        Page<Member> pageMember = memberService.page(pageable, memberGetRequest);
-        return SuccessResponseHelper.success(pageMember.map(MemberGetResponse::new));
-    }
+	@GetMapping(Url.MEMBER)
+	public SuccessResponse<Page<MemberGetResponse>> getMembers(final Pageable pageable, final MemberGetRequest memberGetRequest) {
+		Page<Member> pageMember = memberService.page(pageable, memberGetRequest);
+		return SuccessResponseHelper.success(pageMember.map(MemberGetResponse::new));
+	}
 
-    @GetMapping(Url.MEMBER + "/{memberId}")
-    public SuccessResponse<MemberGetResponse> getMember(@PathVariable final Long memberId) {
-        Member member = memberService.find(memberId);
-        return SuccessResponseHelper.success(new MemberGetResponse(member));
-    }
+	@GetMapping(Url.MEMBER + "/{memberId}")
+	public SuccessResponse<MemberGetResponse> getMember(@PathVariable final Long memberId) {
+		Member member = memberService.find(memberId);
+		return SuccessResponseHelper.success(new MemberGetResponse(member));
+	}
 
-    @PostMapping(Url.MEMBER)
-    public SuccessResponse<MemberPostResponse> postMember(@Validated @RequestBody final MemberPostRequest request) {
-        Member member = memberService.save(request);
-        return SuccessResponseHelper.success(new MemberPostResponse(member));
-    }
+	@PostMapping(Url.MEMBER)
+	public SuccessResponse<MemberPostResponse> postMember(@Validated @RequestBody final MemberPostRequest request) {
+		Member member = memberService.save(request);
+		return SuccessResponseHelper.success(new MemberPostResponse(member));
+	}
 }

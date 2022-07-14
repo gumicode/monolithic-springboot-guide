@@ -24,7 +24,7 @@ class AlertServiceTest {
 
 	@BeforeEach
 	void setMemberService() {
-		alertService = new AlertServiceImpl(alertRepository);
+		alertService = new AlertService(alertRepository);
 	}
 
 	private AlertPostRequest generatePostRequest() {

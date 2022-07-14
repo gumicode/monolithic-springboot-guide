@@ -1,8 +1,8 @@
 package com.example.monolithic.domain.alert.handler;
 
 import com.example.monolithic.domain.alert.converter.AlertConverter;
-import com.example.monolithic.global.event.AlertPublishEvent;
 import com.example.monolithic.domain.alert.service.AlertService;
+import com.example.monolithic.global.event.AlertPublishEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;

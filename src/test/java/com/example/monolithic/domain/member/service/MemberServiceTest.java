@@ -2,6 +2,7 @@ package com.example.monolithic.domain.member.service;
 
 import com.example.monolithic.domain.member.dto.MemberPostRequest;
 import com.example.monolithic.domain.member.entity.Member;
+import com.example.monolithic.domain.member.repository.MemberQueryRepository;
 import com.example.monolithic.domain.member.repository.MemberRepository;
 import com.example.monolithic.global.exception.DomainValidationException;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,13 +25,16 @@ class MemberServiceTest {
 	MemberRepository memberRepository;
 
 	@Mock
+	MemberQueryRepository memberQueryRepository;
+
+	@Mock
 	ApplicationEventPublisher applicationEventPublisher;
 
 	MemberService memberService;
 
 	@BeforeEach
 	void setMemberService() {
-		memberService = new MemberServiceImpl(memberRepository, applicationEventPublisher);
+		memberService = new MemberService(memberRepository, memberQueryRepository, applicationEventPublisher);
 	}
 
 	@Test
