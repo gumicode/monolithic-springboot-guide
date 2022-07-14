@@ -32,7 +32,7 @@ class MemberQueryRepositoryTest {
 	MemberQueryRepository memberQueryRepository;
 
 	@BeforeEach
-	public void init() {
+	void init() {
 		memberQueryRepository = new MemberQueryRepository(new JPAQueryFactory(entityManager));
 	}
 

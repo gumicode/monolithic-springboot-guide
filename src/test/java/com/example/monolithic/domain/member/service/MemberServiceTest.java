@@ -33,7 +33,7 @@ class MemberServiceTest {
 	MemberService memberService;
 
 	@BeforeEach
-	void setMemberService() {
+	void init() {
 		memberService = new MemberService(memberRepository, memberQueryRepository, applicationEventPublisher);
 	}
 

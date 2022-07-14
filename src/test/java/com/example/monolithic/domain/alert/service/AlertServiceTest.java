@@ -23,7 +23,7 @@ class AlertServiceTest {
 	AlertService alertService;
 
 	@BeforeEach
-	void setMemberService() {
+	void init() {
 		alertService = new AlertService(alertRepository);
 	}
 
