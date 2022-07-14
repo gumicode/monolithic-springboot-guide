@@ -1,6 +1,6 @@
 package com.example.monolithic.global.exception;
 
-import com.example.monolithic.global.error.ErrorCode;
+import com.example.monolithic.global.error.ErrorCodeSupport;
 import lombok.Getter;
 
 /**
@@ -10,18 +10,18 @@ import lombok.Getter;
 @Getter
 public abstract class BusinessException extends RuntimeException {
 
-    private final ErrorCode errorCode;
+    private final ErrorCodeSupport errorCodeSupport;
     private final String[] args;
     private final String errorMessage;
 
-    public BusinessException(final ErrorCode errorCode, final String... args) {
-        this.errorCode = errorCode;
+    public BusinessException(final ErrorCodeSupport errorCodeSupport, final String... args) {
+        this.errorCodeSupport = errorCodeSupport;
         this.args = args;
         this.errorMessage = null;
     }
 
-    public BusinessException(final ErrorCode errorCode, final String errorMessage, final String... args) {
-        this.errorCode = errorCode;
+    public BusinessException(final ErrorCodeSupport errorCodeSupport, final String errorMessage, final String... args) {
+        this.errorCodeSupport = errorCodeSupport;
         this.args = args;
         this.errorMessage = errorMessage;
     }

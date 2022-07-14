@@ -1,8 +1,8 @@
-package com.example.monolithic.global.dto.response;
+package com.example.monolithic.global.helper;
 
 import com.example.monolithic.global.dto.response.ErrorResponse;
 import com.example.monolithic.global.dto.response.FieldErrorResponse;
-import com.example.monolithic.global.error.ErrorCode;
+import com.example.monolithic.global.error.ErrorCodeSupport;
 import com.example.monolithic.global.error.GlobalErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -20,11 +20,11 @@ public class ErrorResponseHelper {
 
     private final MessageSource messageSource;
 
-    public ResponseEntity<ErrorResponse> code(ErrorCode errorCode, String... args) {
-        String errorMessage = messageSource.getMessage(errorCode.name(), args, LocaleContextHolder.getLocale());
+    public ResponseEntity<ErrorResponse> code(ErrorCodeSupport errorCodeSupport, String... args) {
+        String errorMessage = messageSource.getMessage(errorCodeSupport.name(), args, LocaleContextHolder.getLocale());
         return ResponseEntity
-                .status(errorCode.status())
-                .body(new ErrorResponse(errorCode.name(), errorMessage));
+                .status(errorCodeSupport.status())
+                .body(new ErrorResponse(errorCodeSupport.name(), errorMessage));
     }
 
     public ResponseEntity<ErrorResponse> bindErrors(Errors errors) {
@@ -36,9 +36,9 @@ public class ErrorResponseHelper {
                     return new FieldErrorResponse(error, errorMessage);
                 }).collect(Collectors.toList());
 
-        ErrorCode errorCode = GlobalErrorCode.G0001;
-        String errorMessage = messageSource.getMessage(errorCode.name(), null, LocaleContextHolder.getLocale());
-        return ResponseEntity.status(errorCode.status())
-                .body(new ErrorResponse(errorCode.name(), errorMessage, details));
+        ErrorCodeSupport errorCodeSupport = GlobalErrorCode.G0001;
+        String errorMessage = messageSource.getMessage(errorCodeSupport.name(), null, LocaleContextHolder.getLocale());
+        return ResponseEntity.status(errorCodeSupport.status())
+                .body(new ErrorResponse(errorCodeSupport.name(), errorMessage, details));
     }
 }

@@ -1,7 +1,7 @@
 package com.example.monolithic.global.handler;
 
 import com.example.monolithic.global.dto.response.ErrorResponse;
-import com.example.monolithic.global.dto.response.ErrorResponseHelper;
+import com.example.monolithic.global.helper.ErrorResponseHelper;
 import com.example.monolithic.global.error.GlobalErrorCode;
 import com.example.monolithic.global.exception.BusinessException;
 import com.example.monolithic.global.exception.DomainNotFoundException;
@@ -28,13 +28,13 @@ public class GlobalExceptionHandler {
         if (e.getId() != null) {
             log.error("ID not found : {}", e.getId());
         }
-        return errorResponseHelper.code(e.getErrorCode());
+        return errorResponseHelper.code(e.getErrorCodeSupport());
     }
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorResponse> handleBusinessException(BusinessException e) {
         log.error("BusinessException : ", e);
-        return errorResponseHelper.code(e.getErrorCode());
+        return errorResponseHelper.code(e.getErrorCodeSupport());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)

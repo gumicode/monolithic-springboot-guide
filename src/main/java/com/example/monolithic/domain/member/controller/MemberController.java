@@ -7,7 +7,7 @@ import com.example.monolithic.domain.member.dto.response.MemberPostResponse;
 import com.example.monolithic.domain.member.entity.Member;
 import com.example.monolithic.domain.member.service.MemberService;
 import com.example.monolithic.global.dto.response.SuccessResponse;
-import com.example.monolithic.global.dto.response.SuccessResponseHelper;
+import com.example.monolithic.global.helper.SuccessResponseHelper;
 import com.example.monolithic.global.property.Url;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.example.monolithic.global.dto.response;
+package com.example.monolithic.global.helper;
 
 import com.example.monolithic.global.dto.response.SuccessResponse;
 

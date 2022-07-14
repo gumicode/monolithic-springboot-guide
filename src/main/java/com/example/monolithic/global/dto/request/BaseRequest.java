@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class QueryDslExpression {
+public abstract class BaseRequest {
 
 	public <T extends Number & Comparable<?>> BooleanExpression in(
 			final NumberPath<T> path, final Collection<T> value) {

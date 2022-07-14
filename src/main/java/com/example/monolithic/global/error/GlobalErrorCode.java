@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
  * GlobalErrorCode
  * 전역에서 공통으로 발생되는 오류코드
  */
-public enum GlobalErrorCode implements ErrorCode {
+public enum GlobalErrorCode implements ErrorCodeSupport {
 
     G0000(HttpStatus.INTERNAL_SERVER_ERROR)
     ,G0001(HttpStatus.BAD_REQUEST)
