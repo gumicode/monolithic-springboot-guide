@@ -1,19 +1,16 @@
 package com.example.monolithic.domain.alert.repository;
 
 import com.example.monolithic.domain.alert.entity.Alert;
-import com.example.monolithic.global.configuration.TestJPAQueryFactoryConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @EnableJpaAuditing
-@Import(TestJPAQueryFactoryConfiguration.class)
 class AlertRepositoryTest {
 
 	@Autowired

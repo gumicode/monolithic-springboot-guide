@@ -1,4 +1,4 @@
-package com.example.monolithic.global.dto;
+package com.example.monolithic.global.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,12 +1,12 @@
 package com.example.monolithic;
 
 import com.example.monolithic.domain.member.entity.Member;
-import com.example.monolithic.domain.member.repository.MemberQueryRepository;
 import com.example.monolithic.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,15 +19,12 @@ public class DummyDataInitializer implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
-
-
 		initialMember();
-
 	}
 
 
-	private void initialMember() {
-
+	@Transactional
+	public void initialMember() {
 		// given
 		List<Member> members = Stream.iterate(0, n -> n + 1)
 				.limit(100)

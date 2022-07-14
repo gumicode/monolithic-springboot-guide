@@ -1,13 +1,13 @@
 package com.example.monolithic.domain.member.controller;
 
-import com.example.monolithic.domain.member.dto.MemberGetRequest;
-import com.example.monolithic.domain.member.dto.MemberGetResponse;
-import com.example.monolithic.domain.member.dto.MemberPostRequest;
-import com.example.monolithic.domain.member.dto.MemberPostResponse;
+import com.example.monolithic.domain.member.dto.request.MemberGetRequest;
+import com.example.monolithic.domain.member.dto.response.MemberGetResponse;
+import com.example.monolithic.domain.member.dto.request.MemberPostRequest;
+import com.example.monolithic.domain.member.dto.response.MemberPostResponse;
 import com.example.monolithic.domain.member.entity.Member;
 import com.example.monolithic.domain.member.service.MemberService;
-import com.example.monolithic.global.dto.SuccessResponse;
-import com.example.monolithic.global.dto.SuccessResponseHelper;
+import com.example.monolithic.global.dto.response.SuccessResponse;
+import com.example.monolithic.global.dto.response.SuccessResponseHelper;
 import com.example.monolithic.global.property.Url;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.example.monolithic.domain.member.service;
 
-import com.example.monolithic.domain.member.dto.MemberGetRequest;
-import com.example.monolithic.domain.member.dto.MemberPostRequest;
+import com.example.monolithic.domain.member.dto.request.MemberGetRequest;
+import com.example.monolithic.domain.member.dto.request.MemberPostRequest;
 import com.example.monolithic.domain.member.entity.Member;
 import com.example.monolithic.domain.member.repository.MemberQueryRepository;
 import com.example.monolithic.domain.member.repository.MemberRepository;

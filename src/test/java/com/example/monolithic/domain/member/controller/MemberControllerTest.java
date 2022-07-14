@@ -1,6 +1,6 @@
 package com.example.monolithic.domain.member.controller;
 
-import com.example.monolithic.domain.member.dto.MemberPostRequest;
+import com.example.monolithic.domain.member.dto.request.MemberPostRequest;
 import com.example.monolithic.domain.member.entity.Member;
 import com.example.monolithic.domain.member.service.MemberService;
 import com.example.monolithic.global.property.Url;

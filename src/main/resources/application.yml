@@ -1,6 +1,22 @@
 server:
   port: 8080
 
+logging:
+  level:
+    com:
+      example:
+        monolithic: debug # project logging
+    org:
+      springframework:
+        transaction: debug # spring transaction logging
+        web: debug # spring web logging
+        security: debug # spring security logging
+        orm:
+          jpa: debug # spring orm jpa logging
+      hibernate:
+        SQL: debug # hibernate sql logging
+        type.descriptor.sql: trace # DDL 시 입력된 실제 Value 값을 확인할려면 trace 으로 사용
+
 
 spring:
   h2:
@@ -23,10 +39,12 @@ spring:
       hibernate:
         format_sql: true # sql query pretty option
         default_batch_fetch_size: 1000 # fetch join in query
+  servlet:
+    multipart:
+      enabled: true # file upload true
+      max-file-size: 1024MB # single file max size
+      max-request-size: 1024MB # total file request max size
   messages:
     basename: classpath:/i18n/messages, classpath:/i18n/errors
   mvc:
     throw-exception-if-no-handler-found: true
-  web:
-    resources:
-      add-mappings: false

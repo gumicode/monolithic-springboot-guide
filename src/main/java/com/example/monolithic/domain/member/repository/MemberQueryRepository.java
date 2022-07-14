@@ -1,8 +1,9 @@
 package com.example.monolithic.domain.member.repository;
 
-import com.example.monolithic.domain.member.dto.MemberGetRequest;
+import com.example.monolithic.domain.member.dto.request.MemberGetRequest;
 import com.example.monolithic.domain.member.entity.Member;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.core.types.Expression;
+import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +18,21 @@ import static com.example.monolithic.domain.member.entity.QMember.member;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class MemberQueryRepository extends MemberQuerySupport {
-
+public class MemberQueryRepository {
 	private final JPAQueryFactory jpaQueryFactory;
 
-	public Page<Member> page(@NonNull final Pageable pageable, final MemberGetRequest memberGetRequest) {
-		JPAQuery<Member> jpaQuery = jpaQueryFactory
-				.select(member)
-				.from()
-				.where(where(memberGetRequest));
-		return PageableExecutionUtils.getPage(jpaQuery.fetch(), pageable, jpaQuery::fetchCount);
+	public Page<Member> page(@NonNull final Pageable pageable, final MemberGetRequest request) {
+
+		JPQLQuery<Member> jpqlQuery = query(member, request)
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize());
+		return PageableExecutionUtils.getPage(jpqlQuery.fetch(), pageable, () -> query(member.count(), request).fetchFirst());
+	}
+
+	private <T> JPQLQuery<T> query(final Expression<T> select, final MemberGetRequest request) {
+		return jpaQueryFactory
+				.select(select)
+				.from(member)
+				.where(request.getWhere(member));
 	}
 }

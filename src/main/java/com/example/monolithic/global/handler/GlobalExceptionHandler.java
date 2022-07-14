@@ -1,7 +1,7 @@
 package com.example.monolithic.global.handler;
 
-import com.example.monolithic.global.dto.ErrorResponse;
-import com.example.monolithic.global.dto.ErrorResponseHelper;
+import com.example.monolithic.global.dto.response.ErrorResponse;
+import com.example.monolithic.global.dto.response.ErrorResponseHelper;
 import com.example.monolithic.global.error.GlobalErrorCode;
 import com.example.monolithic.global.exception.BusinessException;
 import com.example.monolithic.global.exception.DomainNotFoundException;

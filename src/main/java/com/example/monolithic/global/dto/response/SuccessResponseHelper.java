@@ -1,4 +1,6 @@
-package com.example.monolithic.global.dto;
+package com.example.monolithic.global.dto.response;
+
+import com.example.monolithic.global.dto.response.SuccessResponse;
 
 public class SuccessResponseHelper {
 

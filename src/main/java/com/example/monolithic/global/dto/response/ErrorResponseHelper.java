@@ -1,5 +1,7 @@
-package com.example.monolithic.global.dto;
+package com.example.monolithic.global.dto.response;
 
+import com.example.monolithic.global.dto.response.ErrorResponse;
+import com.example.monolithic.global.dto.response.FieldErrorResponse;
 import com.example.monolithic.global.error.ErrorCode;
 import com.example.monolithic.global.error.GlobalErrorCode;
 import lombok.RequiredArgsConstructor;
